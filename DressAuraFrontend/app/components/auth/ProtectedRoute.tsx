@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { useNavigate } from "react-router";
-import { useIsLoggedIn } from "~/services/authController";
+import { useIsLoggedIn, UserStatus } from "~/services/authController";
 
 type Props = {
     children: ReactNode;
@@ -11,18 +11,24 @@ const ProtectedRoute = ({ children }: Props) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // If not authenticated, redirect to login page
-        if (isAuthenticated === false) {
-            navigate("/login"); // Redirect to login page
+        if (isAuthenticated === UserStatus.Unregistered) {
+            navigate("/register");
+        }
+
+        if (isAuthenticated === UserStatus.Unauthorized) {
+            navigate("/login");
         }
     }, [isAuthenticated, navigate]);
 
     if (isAuthenticated === null) {
-        // Render a loading state while checking authentication
-        return <div>Loading...</div>; // You can customize this
+        return <div>Loading...</div>;
     }
 
-    if (isAuthenticated) {
+    if (
+        isAuthenticated === UserStatus.LoggedIn ||
+        (isAuthenticated === UserStatus.Unregistered &&
+            location?.pathname === "/register")
+    ) {
         return children;
     }
 

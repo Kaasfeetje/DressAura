@@ -1,4 +1,4 @@
-import ProtectedRoute from "~/components/ProtectedRoute";
+import ProtectedRoute from "~/components/auth/ProtectedRoute";
 import type { Route } from "./+types/home";
 import { useFetchProducts } from "~/services/productController";
 

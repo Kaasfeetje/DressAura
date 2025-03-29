@@ -5,6 +5,10 @@ export async function makeApiRequest<T>(
     const response = await fetch(`http://localhost:5158${path}`, {
         ...options,
         credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            ...options.headers,
+        },
     });
 
     if (!response.ok) {
