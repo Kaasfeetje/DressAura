@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using DressAuraBackend.Data;
 using DressAuraBackend.Models;
 using DressAuraBackend.Models.DTOs;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DressAuraBackend.Controllers
 {
@@ -20,6 +21,7 @@ namespace DressAuraBackend.Controllers
 
         // GET: api/products
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
             return await _context.Products.Include(p => p.Category).ToListAsync();

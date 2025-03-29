@@ -10,12 +10,10 @@ This is a full-featured e-commerce platform under active development. It will al
 ## Features
 
 ### 1. **User Account Management**
-- [ ] Registration/Login with email/password or third-party login (Google, Facebook, etc.)
-- [ ] Password strength validation and email verification
-- [ ] Optional two-factor authentication (2FA)
+- [x] Login with third-party login (Google)
+- [ ] Account creation
 - [ ] Profile management: Update name, email, shipping address, and payment methods
 - [ ] Order history and tracking
-- [ ] Password recovery and reset
 
 ### 2. **Product Catalog & Search**
 - [ ] Product pages with images, descriptions, pricing, and availability
