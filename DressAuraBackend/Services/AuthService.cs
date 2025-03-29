@@ -13,7 +13,7 @@ namespace DressAuraBackend.Services
         Task UpdateUser(User user);
         Task GoogleSignIn(string email);
         bool EmailExists(string email);
-        Task<User> RegisterUser(string email, User user, UserRegisterDTO userData);
+        Task<User> RegisterUser(User user, UserRegisterDTO userData);
     }
 
     public class AuthService : IAuthService
@@ -68,8 +68,14 @@ namespace DressAuraBackend.Services
             return _context.Users.Any(u => u.Email == email);
         }
 
-        public async Task<User> RegisterUser(string email, User user, UserRegisterDTO userData)
+        public async Task<User> RegisterUser(User user, UserRegisterDTO userData)
         {
+            if (user == null)
+            {
+                Console.Out.WriteLine("REEEE");
+                return user;
+            }
+
             user.FirstName = userData.FirstName;
             user.LastName = userData.LastName;
             if (userData.ProfilePictureUrl != null)

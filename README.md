@@ -11,8 +11,8 @@ This is a full-featured e-commerce platform under active development. It will al
 
 ### 1. **User Account Management**
 - [x] Login with third-party login (Google)
-- [ ] Account creation
-- [ ] Profile management: Update name, email, shipping address, and payment methods
+- [x] Account creation
+- [ ] Profile management: Update name, shipping address, and payment methods
 - [ ] Order history and tracking
 
 ### 2. **Product Catalog & Search**

@@ -100,7 +100,7 @@ namespace DressAuraBackend.Controllers
                 return BadRequest("No user found.");
             }
 
-            user = await authService.RegisterUser(email, user, userData);
+            user = await authService.RegisterUser(user, userData);
 
             return Ok(user);
         }
