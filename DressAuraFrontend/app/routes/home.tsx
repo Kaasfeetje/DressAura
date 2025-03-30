@@ -1,6 +1,6 @@
 import ProtectedRoute from "~/components/auth/ProtectedRoute";
 import type { Route } from "./+types/home";
-import { useFetchProducts } from "~/services/productController";
+import { useFetchProducts } from "~/controllers/productController";
 import Navbar from "~/components/common/Navbar/Navbar";
 
 export function meta({}: Route.MetaArgs) {

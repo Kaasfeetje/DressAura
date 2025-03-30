@@ -1,4 +1,3 @@
-using DressAuraBackend.Models;
 using DressAuraBackend.Models.DTOs;
 using DressAuraBackend.Services;
 using Microsoft.AspNetCore.Authentication;
@@ -6,7 +5,6 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using System.Threading.Tasks;
 
 namespace DressAuraBackend.Controllers
 {
@@ -76,12 +74,17 @@ namespace DressAuraBackend.Controllers
         }
 
         [Authorize]
-        [HttpGet("profile")]
-        public IActionResult GetProfile()
+        [HttpGet("account")]
+        public async Task<IActionResult> GetAccount()
         {
-            var user = HttpContext.User;
-            var email = user?.FindFirst(ClaimTypes.Email)?.Value;
-            return Ok(new { email });
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (email == null)
+            {
+                return Unauthorized();
+            }
+
+            var user = await authService.GetUserByEmail(email);
+            return Ok(user);
         }
 
         [Authorize]
@@ -101,6 +104,27 @@ namespace DressAuraBackend.Controllers
             }
 
             user = await authService.RegisterUser(user, userData);
+
+            return Ok(user);
+        }
+
+        [Authorize]
+        [HttpPut("personal-details")]
+        public async Task<IActionResult> UpdatePersonalDetails(UserUpdatePersonalDetailsDTO userData)
+        {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (email == null)
+            {
+                return Unauthorized();
+            }
+
+            var user = await authService.GetUserByEmail(email);
+            if (user == null)
+            {
+                return BadRequest("No user found.");
+            }
+
+            user = await authService.UpdatePersonalDetails(user, userData);
 
             return Ok(user);
         }

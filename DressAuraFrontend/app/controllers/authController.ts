@@ -1,10 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { queryKeys } from "./reactQueryKeys";
 import { makeApiRequest } from "./api";
+import type { Gender } from "~/components/form/GenderInput";
 
 export type UserType = {
     id: number;
     email: string;
+    firstName?: string;
+    lastName?: string;
+    profilePictureUrl?: string;
+    birthday?: string;
+    phoneNumber?: string;
+    gender?: Gender;
     isRegistered: boolean;
 };
 
@@ -23,7 +30,7 @@ export const useIsLoggedIn = () => {
                 {
                     method: "GET",
                     credentials: "include",
-                }
+                },
             );
 
             if (!response.ok) {
@@ -50,5 +57,32 @@ export const registerUser = async (data: RegisterInput) => {
     return await makeApiRequest<UserType>("/api/auth/register", {
         method: "PUT",
         body: JSON.stringify(data),
+    });
+};
+
+export type UpdatePersonalDetailsInput = {
+    firstName: string;
+    lastName: string;
+    birthday: string;
+    phoneNumber?: string;
+    gender?: Gender;
+    profilePictureUrl?: string;
+};
+
+export const updatePersonalDetails = async (
+    data: UpdatePersonalDetailsInput,
+) => {
+    return await makeApiRequest<UserType>("/api/auth/personal-details", {
+        method: "PUT",
+        body: JSON.stringify(data),
+    });
+};
+
+export const useAccount = () => {
+    return useQuery({
+        queryKey: [queryKeys.auth.account],
+        queryFn: async () => {
+            return await makeApiRequest<UserType>("/api/auth/account");
+        },
     });
 };

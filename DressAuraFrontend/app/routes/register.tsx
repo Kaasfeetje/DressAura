@@ -1,7 +1,7 @@
 import ProtectedRoute from "~/components/auth/ProtectedRoute";
 import type { Route } from "./+types/register";
 import RegisterForm from "~/components/auth/RegisterForm";
-import { registerUser, type RegisterInput } from "~/services/authController";
+import { registerUser, type RegisterInput } from "~/controllers/authController";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { useState } from "react";
@@ -9,7 +9,7 @@ import {
     Notification,
     NotificationType,
 } from "~/components/common/Notification";
-import { queryKeys } from "~/services/reactQueryKeys";
+import { queryKeys } from "~/controllers/reactQueryKeys";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -35,7 +35,7 @@ const RegisterPage = () => {
         mutationFn: registerUser,
         onSuccess: async () => {
             await queryClient.invalidateQueries({
-                queryKey: [queryKeys.auth.isLoggedIn],
+                queryKey: [queryKeys.auth.isLoggedIn, queryKeys.auth.account],
             });
             setTimeout(() => {
                 navigate("/");

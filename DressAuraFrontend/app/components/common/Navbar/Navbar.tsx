@@ -34,7 +34,7 @@ const Navbar = () => {
                         </div>
                         <div className="ml-auto flex items-center">
                             <NavbarLink
-                                href="/profile"
+                                href="/account"
                                 srText="Navigate to profile"
                                 Icon={FaUser}
                             />

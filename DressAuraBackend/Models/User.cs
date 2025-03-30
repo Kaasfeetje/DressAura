@@ -20,6 +20,12 @@ namespace DressAuraBackend.Models
 
         public string? ProfilePictureUrl { get; set; }
 
+        public DateOnly? Birthday { get; set; }
+
+        public string? PhoneNumber { get; set; }
+
+        public string? Gender { get; set; }
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
@@ -28,5 +34,11 @@ namespace DressAuraBackend.Models
 
         public bool IsRegistered { get; set; } = false;
 
+    }
+
+    public class Gender
+    {
+        public const string Male = "male";
+        public const string Female = "female";
     }
 }

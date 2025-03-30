@@ -1,6 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import { useNavigate } from "react-router";
-import { useIsLoggedIn, UserStatus } from "~/services/authController";
+import { useIsLoggedIn, UserStatus } from "~/controllers/authController";
 
 type Props = {
     children: ReactNode;

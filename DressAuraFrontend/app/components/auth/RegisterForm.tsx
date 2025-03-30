@@ -1,6 +1,6 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { z } from "zod";
-import type { RegisterInput } from "~/services/authController";
+import type { RegisterInput } from "~/controllers/authController";
 import { Notification } from "../common/Notification";
 
 const formSchema = z.object({
@@ -84,16 +84,16 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
     };
 
     return (
-        <div className="max-w-lg mx-auto p-8 bg-white rounded-xl shadow-xl ring-1 ring-gray-200">
+        <div className="mx-auto max-w-lg rounded-xl bg-white p-8 shadow-xl ring-1 ring-gray-200">
             {showNotification && <Notification message="Registered" />}
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-6">
+            <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
                 Profile Form
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="mb-4">
                     <label
                         htmlFor="firstName"
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="mb-2 block text-sm font-medium text-gray-700"
                     >
                         First Name:
                     </label>
@@ -103,7 +103,7 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
                         name="firstName"
                         value={formData.firstName}
                         onChange={handleChange}
-                        className={`mt-1 p-3 border rounded-md w-full focus:ring-2 focus:ring-blue-400 transition-all duration-300 ${
+                        className={`mt-1 w-full rounded-md border p-3 transition-all duration-300 focus:ring-2 focus:ring-blue-400 ${
                             errors.firstName
                                 ? "border-red-500"
                                 : "border-gray-300"
@@ -111,7 +111,7 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
                         placeholder="Enter your first name"
                     />
                     {errors.firstName && (
-                        <p className="text-sm text-red-500 mt-1">
+                        <p className="mt-1 text-sm text-red-500">
                             {errors.firstName}
                         </p>
                     )}
@@ -120,7 +120,7 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
                 <div className="mb-4">
                     <label
                         htmlFor="lastName"
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="mb-2 block text-sm font-medium text-gray-700"
                     >
                         Last Name:
                     </label>
@@ -130,7 +130,7 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
                         name="lastName"
                         value={formData.lastName}
                         onChange={handleChange}
-                        className={`mt-1 p-3 border rounded-md w-full focus:ring-2 focus:ring-blue-400 transition-all duration-300 ${
+                        className={`mt-1 w-full rounded-md border p-3 transition-all duration-300 focus:ring-2 focus:ring-blue-400 ${
                             errors.lastName
                                 ? "border-red-500"
                                 : "border-gray-300"
@@ -138,7 +138,7 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
                         placeholder="Enter your last name"
                     />
                     {errors.lastName && (
-                        <p className="text-sm text-red-500 mt-1">
+                        <p className="mt-1 text-sm text-red-500">
                             {errors.lastName}
                         </p>
                     )}
@@ -147,7 +147,7 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
                 <div className="mb-4">
                     <label
                         htmlFor="profilePictureUrl"
-                        className="block text-sm font-medium text-gray-700 mb-2"
+                        className="mb-2 block text-sm font-medium text-gray-700"
                     >
                         Profile Picture URL:
                     </label>
@@ -157,7 +157,7 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
                         name="profilePictureUrl"
                         value={formData.profilePictureUrl}
                         onChange={handleChange}
-                        className={`mt-1 p-3 border rounded-md w-full focus:ring-2 focus:ring-blue-400 transition-all duration-300 ${
+                        className={`mt-1 w-full rounded-md border p-3 transition-all duration-300 focus:ring-2 focus:ring-blue-400 ${
                             errors.profilePictureUrl
                                 ? "border-red-500"
                                 : "border-gray-300"
@@ -165,7 +165,7 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
                         placeholder="Enter image URL"
                     />
                     {errors.profilePictureUrl && (
-                        <p className="text-sm text-red-500 mt-1">
+                        <p className="mt-1 text-sm text-red-500">
                             {errors.profilePictureUrl}
                         </p>
                     )}
@@ -175,7 +175,7 @@ const RegisterForm = ({ onSubmit, isLoading }: Props) => {
                     <button
                         disabled={isLoading || showNotification}
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-300 transition duration-300 disabled:bg-blue-400"
+                        className="w-full rounded-md bg-blue-600 py-3 text-white transition duration-300 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none disabled:bg-blue-400"
                     >
                         {isLoading || showNotification
                             ? "Loading... "
