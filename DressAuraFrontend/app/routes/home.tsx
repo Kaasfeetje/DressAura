@@ -1,6 +1,7 @@
 import ProtectedRoute from "~/components/auth/ProtectedRoute";
 import type { Route } from "./+types/home";
 import { useFetchProducts } from "~/services/productController";
+import Navbar from "~/components/common/Navbar/Navbar";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -12,6 +13,7 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
     return (
         <ProtectedRoute>
+            <Navbar />
             <HomePage />
         </ProtectedRoute>
     );
