@@ -1,7 +1,7 @@
 import Select from "react-select";
-import type { ProductColor } from "~/controllers/productController";
+import type { ColorType } from "~/controllers/productController";
 
-const getOptions = (colors: ProductColor[]) =>
+const getOptions = (colors: ColorType[]) =>
     colors.map((color) => ({
         value: color.id,
         label: (
@@ -17,7 +17,7 @@ const getOptions = (colors: ProductColor[]) =>
     }));
 
 type Props = {
-    colors: ProductColor[];
+    colors: ColorType[];
 };
 const ColorChoice = ({ colors }: Props) => {
     return (

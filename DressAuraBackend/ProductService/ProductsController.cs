@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using DressAuraBackend.Data;
 using Microsoft.AspNetCore.Authorization;
 using DressAuraBackend.ProductService.DTOs;
+using DressAuraBackend.ProductService.Models;
 
 namespace DressAuraBackend.ProductService
 {

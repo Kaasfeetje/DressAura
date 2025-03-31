@@ -1,9 +1,10 @@
 import { useCallback, useRef, useState } from "react";
 import type { IconType } from "react-icons";
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
+import type { ImageType } from "~/controllers/productController";
 
 type Props = {
-    images: string[];
+    images: ImageType[];
 };
 
 const ProductImageViewer = ({ images }: Props) => {
@@ -45,7 +46,7 @@ const ProductImageViewer = ({ images }: Props) => {
             <div className="flex h-full w-full items-center justify-center">
                 <img
                     className="max-h-[500px] max-w-[500px] object-contain"
-                    src={images[index]}
+                    src={images[index].imageUrl}
                 />
             </div>
             <div className="relative px-10">
@@ -59,13 +60,13 @@ const ProductImageViewer = ({ images }: Props) => {
                     )}
                     {images.map((image, idx) => (
                         <div
-                            key={image}
+                            key={image.id}
                             className={`w-[100px] cursor-pointer rounded-md border ${index === idx ? "border-blue-600" : "border-gray-300 hover:border-gray-800"}`}
                             onClick={() => setIndex(idx)}
                         >
                             <img
                                 className="max-h-[100px] min-h-[100px] max-w-[100px] min-w-[100px] object-contain"
-                                src={image}
+                                src={image.imageUrl}
                                 alt={"Product image"}
                             />
                         </div>

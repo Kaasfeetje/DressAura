@@ -1,4 +1,5 @@
 using DressAuraBackend.AuthService.DTOs;
+using DressAuraBackend.AuthService.Models;
 using DressAuraBackend.Data;
 using Microsoft.EntityFrameworkCore;
 

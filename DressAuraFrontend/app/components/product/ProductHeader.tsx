@@ -13,10 +13,10 @@ const ProductHeader = ({ product }: Props) => {
                 <div>
                     Brand:{" "}
                     <Link
-                        to={`/b/${product.brand}`}
+                        to={`/b/${product.brand?.name}`}
                         className="text-blue-600 underline"
                     >
-                        {product.brand}
+                        {product.brand?.name}
                     </Link>
                 </div>
                 <div>

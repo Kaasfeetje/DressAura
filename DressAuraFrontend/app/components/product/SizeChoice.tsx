@@ -1,18 +1,19 @@
 import Select from "react-select";
+import type { SizeType } from "~/controllers/productController";
 
-const getOptions = (sizes: string[]) =>
+const getOptions = (sizes: SizeType[]) =>
     sizes.map((size) => ({
-        value: size,
+        value: size.id,
         label: (
             <div>
                 Size:
-                <span> {size}</span>
+                <span> {size.name}</span>
             </div>
         ),
     }));
 
 type Props = {
-    sizes: string[];
+    sizes: SizeType[];
 };
 const SizeChoice = ({ sizes }: Props) => {
     return (
