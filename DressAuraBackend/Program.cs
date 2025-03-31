@@ -1,14 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using DressAuraBackend.Data;
-using Microsoft.AspNetCore.Authentication.Google;
-using DressAuraBackend.Middleware;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
 using System.Text.Json;
-using DressAuraBackend.Services;
+using DressAuraBackend.AuthService;
 
 var builder = WebApplication.CreateBuilder(args);
 

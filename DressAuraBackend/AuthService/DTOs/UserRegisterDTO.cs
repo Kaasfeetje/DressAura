@@ -1,6 +1,5 @@
-using System.ComponentModel.DataAnnotations;
 
-namespace DressAuraBackend.Models.DTOs
+namespace DressAuraBackend.AuthService.DTOs
 {
     public class UserRegisterDTO
     {

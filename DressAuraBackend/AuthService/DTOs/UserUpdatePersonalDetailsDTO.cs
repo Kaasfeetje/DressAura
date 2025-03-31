@@ -1,4 +1,4 @@
-namespace DressAuraBackend.Models.DTOs
+namespace DressAuraBackend.AuthService.DTOs
 {
     public class UserUpdatePersonalDetailsDTO
     {

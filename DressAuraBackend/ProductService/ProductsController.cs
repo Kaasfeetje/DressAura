@@ -1,12 +1,10 @@
-// Controllers/ProductsController.cs
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DressAuraBackend.Data;
-using DressAuraBackend.Models;
-using DressAuraBackend.Models.DTOs;
 using Microsoft.AspNetCore.Authorization;
+using DressAuraBackend.ProductService.DTOs;
 
-namespace DressAuraBackend.Controllers
+namespace DressAuraBackend.ProductService
 {
     [Route("api/[controller]")]
     [ApiController]

@@ -1,7 +1,7 @@
 
 using System.ComponentModel.DataAnnotations;
 
-namespace DressAuraBackend.Models
+namespace DressAuraBackend.AuthService
 {
     public class User
     {

@@ -1,8 +1,7 @@
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using DressAuraBackend.Models.DTOs;
+using DressAuraBackend.ProductService.DTOs;
 
-namespace DressAuraBackend.Models
+namespace DressAuraBackend.ProductService
 {
     public class Product
     {

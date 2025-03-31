@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace DressAuraBackend.Models.DTOs
+namespace DressAuraBackend.ProductService.DTOs
 {
     public class ProductRequestDTO
     {

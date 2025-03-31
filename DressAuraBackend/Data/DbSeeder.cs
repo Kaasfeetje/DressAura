@@ -1,5 +1,5 @@
 
-using DressAuraBackend.Models;
+using DressAuraBackend.ProductService;
 using Microsoft.EntityFrameworkCore;
 
 namespace DressAuraBackend.Data

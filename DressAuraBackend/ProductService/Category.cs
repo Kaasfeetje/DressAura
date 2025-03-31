@@ -1,4 +1,4 @@
-namespace DressAuraBackend.Models
+namespace DressAuraBackend.ProductService
 {
     public class Category
     {

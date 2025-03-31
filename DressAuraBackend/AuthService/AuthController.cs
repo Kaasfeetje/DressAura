@@ -1,12 +1,11 @@
-using DressAuraBackend.Models.DTOs;
-using DressAuraBackend.Services;
+using DressAuraBackend.AuthService.DTOs;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
-namespace DressAuraBackend.Controllers
+namespace DressAuraBackend.AuthService
 {
     [Route("api/[controller]")]
     [ApiController]

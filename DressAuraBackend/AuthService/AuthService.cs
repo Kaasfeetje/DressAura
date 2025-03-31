@@ -1,10 +1,8 @@
-
+using DressAuraBackend.AuthService.DTOs;
 using DressAuraBackend.Data;
-using DressAuraBackend.Models;
-using DressAuraBackend.Models.DTOs;
 using Microsoft.EntityFrameworkCore;
 
-namespace DressAuraBackend.Services
+namespace DressAuraBackend.AuthService
 {
     public interface IAuthService
     {
