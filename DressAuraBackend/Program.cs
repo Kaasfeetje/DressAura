@@ -3,6 +3,7 @@ using DressAuraBackend.Data;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Text.Json;
 using DressAuraBackend.AuthService;
+using DressAuraBackend.ProductService.Mappings;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,6 +67,8 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
+
+builder.Services.AddAutoMapper(typeof(ProductProfile));
 
 var app = builder.Build();
 

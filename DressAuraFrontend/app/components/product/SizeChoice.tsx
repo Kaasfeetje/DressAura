@@ -13,13 +13,13 @@ const getOptions = (sizes: SizeType[]) =>
     }));
 
 type Props = {
-    sizes: SizeType[];
+    sizes: SizeType[] | undefined;
 };
 const SizeChoice = ({ sizes }: Props) => {
     return (
         <Select
             isSearchable={false}
-            options={getOptions(sizes)}
+            options={getOptions(sizes ?? [])}
             placeholder="Select a size..."
         />
     );

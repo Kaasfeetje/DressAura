@@ -4,7 +4,7 @@ import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";
 import type { ImageType } from "~/controllers/productController";
 
 type Props = {
-    images: ImageType[];
+    images: ImageType[] | undefined;
 };
 
 const ProductImageViewer = ({ images }: Props) => {
@@ -14,7 +14,7 @@ const ProductImageViewer = ({ images }: Props) => {
 
     const containerRef = useRef<HTMLDivElement>(null);
 
-    if (images.length === 0) {
+    if (!images || images.length === 0) {
         return <div>You need to get your stuff together</div>;
     }
 
@@ -42,10 +42,10 @@ const ProductImageViewer = ({ images }: Props) => {
     };
 
     return (
-        <div className="max-w-[500px]">
+        <div className="w-full max-w-[500px]">
             <div className="flex h-full w-full items-center justify-center">
                 <img
-                    className="max-h-[500px] max-w-[500px] object-contain"
+                    className="h-full max-h-[500px] w-full max-w-[500px] object-contain"
                     src={images[index].imageUrl}
                 />
             </div>

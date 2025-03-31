@@ -4,6 +4,7 @@ using DressAuraBackend.Data;
 using Microsoft.AspNetCore.Authorization;
 using DressAuraBackend.ProductService.DTOs;
 using DressAuraBackend.ProductService.Models;
+using AutoMapper;
 
 namespace DressAuraBackend.ProductService
 {
@@ -12,10 +13,12 @@ namespace DressAuraBackend.ProductService
     public class ProductsController : ControllerBase
     {
         private readonly ApiContext _context;
+        private readonly IMapper _mapper;
 
-        public ProductsController(ApiContext context)
+        public ProductsController(ApiContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/products
@@ -26,18 +29,28 @@ namespace DressAuraBackend.ProductService
             return await _context.Products.Include(p => p.Category).ToListAsync();
         }
 
-        // GET: api/products/{id}
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        // GET: api/products/{name}
+        [HttpGet("{name}")]
+        public async Task<ActionResult<Product>> GetProductByName(string name)
         {
-            var product = await _context.Products.Include(p => p.Category).FirstOrDefaultAsync(p => p.Id == id);
+            var product = await _context.Products
+                .Include(p => p.Brand)
+                .Include(p => p.Category)
+                .Include(p => p.ThumbnailImage)
+                .Include(p => p.Images)
+                .Include(p => p.ProductColors)  // Ensure ProductColors is included
+                .ThenInclude(pc => pc.Color)   // Include the Color for each ProductColor
+                .Include(p => p.ProductSizes)  // Ensure ProductSizes is included
+                .ThenInclude(ps => ps.Size)    // Include the Size for each ProductSize
+                .FirstOrDefaultAsync(p => p.Name == name);
 
             if (product == null)
             {
                 return NotFound();
             }
 
-            return product;
+            var productResponseDto = _mapper.Map<ProductResponseDTO>(product);
+            return Ok(productResponseDto);
         }
 
         // POST: api/products

@@ -5,5 +5,6 @@ export const queryKeys = {
     },
     products: {
         fetchAll: "products.fetchAll",
+        fetchByName: "product.fetchByName",
     },
 };

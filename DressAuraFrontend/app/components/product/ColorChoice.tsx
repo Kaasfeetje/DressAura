@@ -17,7 +17,7 @@ const getOptions = (colors: ColorType[]) =>
     }));
 
 type Props = {
-    colors: ColorType[];
+    colors: ColorType[] | undefined;
 };
 const ColorChoice = ({ colors }: Props) => {
     return (
@@ -27,7 +27,7 @@ const ColorChoice = ({ colors }: Props) => {
                     .toLowerCase()
                     .includes(searchText.toLowerCase())
             }
-            options={getOptions(colors)}
+            options={getOptions(colors ?? [])}
             placeholder="Select a color..."
         />
     );

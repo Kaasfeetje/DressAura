@@ -135,3 +135,12 @@ export const useFetchProducts = () => {
         },
     });
 };
+
+export const useFetchProduct = (productName: string) => {
+    return useQuery({
+        queryKey: [queryKeys.products.fetchByName, productName],
+        queryFn: () => {
+            return makeApiRequest<ProductType>(`/api/products/${productName}`);
+        },
+    });
+};
