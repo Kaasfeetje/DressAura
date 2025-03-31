@@ -2,6 +2,7 @@ import ProtectedRoute from "~/components/auth/ProtectedRoute";
 import type { Route } from "./+types/home";
 import { useFetchProducts } from "~/controllers/productController";
 import Navbar from "~/components/common/Navbar/Navbar";
+import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -24,7 +25,9 @@ const HomePage = () => {
     return (
         <div className="">
             {products?.map((product) => (
-                <div key={product.id}>{product.name}</div>
+                <div key={product.id}>
+                    <Link to={`/p/${product.name}`}>{product.name}</Link>
+                </div>
             ))}
         </div>
     );

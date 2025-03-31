@@ -16,4 +16,5 @@ export default [
             route("/personal-details", "routes/account/personalDetails.tsx"),
         ]),
     ]),
+    route("/p/:productName", "routes/products/product.tsx"),
 ] satisfies RouteConfig;

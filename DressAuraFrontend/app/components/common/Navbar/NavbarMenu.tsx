@@ -11,7 +11,7 @@ type Props = {
 const NavbarMenu = ({ isOpen, onClose }: Props) => {
     return (
         <div
-            className={`fixed top-0 h-full w-full transition-colors duration-200 ${isOpen ? "left-0 bg-black/50" : "-left-full bg-black/0"}`}
+            className={`fixed top-0 z-10 h-full w-full transition-colors duration-200 ${isOpen ? "left-0 bg-black/50" : "-left-full bg-black/0"}`}
             onClick={onClose}
         >
             <div
