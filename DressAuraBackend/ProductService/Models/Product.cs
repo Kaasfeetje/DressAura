@@ -30,15 +30,5 @@ namespace DressAuraBackend.ProductService.Models
         public Product()
         {
         }
-
-        public Product(ProductRequestDTO productRequestDTO, Category category)
-        {
-            Name = productRequestDTO.Name;
-            Description = productRequestDTO.Description;
-            Price = productRequestDTO.Price;
-            StockQuantity = productRequestDTO.StockQuantity;
-            CategoryId = productRequestDTO.CategoryId;
-            Category = category;
-        }
     }
 }

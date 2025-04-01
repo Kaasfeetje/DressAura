@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 
 namespace DressAuraBackend.ProductService.DTOs
 {
@@ -7,10 +6,12 @@ namespace DressAuraBackend.ProductService.DTOs
         public string Name { get; set; }
         public string? Description { get; set; }
         public decimal Price { get; set; }
-        public string? ImageUrl { get; set; }
-        public string? Size { get; set; }
-        public string? Color { get; set; }
         public int? StockQuantity { get; set; }
-        public int? CategoryId { get; set; }
+        public string? Brand { get; set; }
+        public string? Category { get; set; }
+        public string ThumbnailImage { get; set; }
+        public string[]? Images { get; set; }
+        public ColorRequestDTO[]? Colors { get; set; }
+        public string[]? Sizes { get; set; }
     }
 }

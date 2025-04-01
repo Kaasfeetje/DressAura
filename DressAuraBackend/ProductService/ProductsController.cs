@@ -15,10 +15,14 @@ namespace DressAuraBackend.ProductService
         private readonly ApiContext _context;
         private readonly IMapper _mapper;
 
-        public ProductsController(ApiContext context, IMapper mapper)
+        private readonly IProductService _productService;
+
+
+        public ProductsController(ApiContext context, IMapper mapper, IProductService productService)
         {
             _context = context;
             _mapper = mapper;
+            _productService = productService;
         }
 
         // GET: api/products
@@ -62,20 +66,12 @@ namespace DressAuraBackend.ProductService
 
         // POST: api/products
         [HttpPost]
-        public async Task<ActionResult<Product>> PostProduct(ProductRequestDTO productRequest)
+        public async Task<ActionResult<ProductResponseDTO>> PostProduct(ProductRequestDTO productRequest)
         {
+            var product = await _productService.CreateProduct(productRequest);
 
-            var category = await _context.Categories.Where(c => c.Id == productRequest.CategoryId).FirstOrDefaultAsync();
-            if (category == null)
-            {
-                return NotFound("Category not found.");
-            }
-
-            var product = new Product(productRequest, category);
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProduct", new { id = product.Id }, product);
+            var productResponseDto = _mapper.Map<ProductResponseDTO>(product);
+            return CreatedAtAction("GetProductByName", new { name = product.Name }, productResponseDto);
         }
 
         // PUT: api/products/{id}

@@ -23,7 +23,7 @@ export default function Home() {
 const HomePage = () => {
     const { data: products } = useFetchProducts();
     return (
-        <div className="mx-auto flex max-w-7xl flex-wrap gap-4 px-2 pt-4 sm:px-6 md:pt-8 lg:px-8">
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-4 px-2 pt-4 sm:px-6 md:pt-8 lg:px-8">
             {products?.map((product) => (
                 <ProductCard key={product.id} product={product} />
             ))}
