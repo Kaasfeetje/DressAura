@@ -19,8 +19,12 @@ This is a full-featured e-commerce platform under active development. It will al
 
 ### 2. **Product Catalog & Search**
 - [x] Product pages with images, descriptions, pricing, and availability
-- [ ] Product reviews and ratings
-- [ ] Filters and sorting by categories, size, price, popularity, etc.
+- [ ] Product card
+- [ ] Filters and sorting by categories
+- [ ] Filters and sorting by color
+- [ ] Filters and sorting by size
+- [ ] Filters and sorting by price
+- [ ] Filters and sorting by popularity
 - [ ] Robust search functionality with autocomplete and suggestions
 
 ### 3. **Shopping Cart and Checkout**

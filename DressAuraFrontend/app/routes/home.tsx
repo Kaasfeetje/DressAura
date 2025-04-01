@@ -2,7 +2,7 @@ import ProtectedRoute from "~/components/auth/ProtectedRoute";
 import type { Route } from "./+types/home";
 import { useFetchProducts } from "~/controllers/productController";
 import Navbar from "~/components/common/Navbar/Navbar";
-import { Link } from "react-router";
+import ProductCard from "~/components/product/ProductCard";
 
 export function meta({}: Route.MetaArgs) {
     return [
@@ -23,11 +23,9 @@ export default function Home() {
 const HomePage = () => {
     const { data: products } = useFetchProducts();
     return (
-        <div className="">
+        <div className="mx-auto flex max-w-7xl flex-wrap gap-4 px-2 pt-4 sm:px-6 md:pt-8 lg:px-8">
             {products?.map((product) => (
-                <div key={product.id}>
-                    <Link to={`/p/${product.name}`}>{product.name}</Link>
-                </div>
+                <ProductCard key={product.id} product={product} />
             ))}
         </div>
     );

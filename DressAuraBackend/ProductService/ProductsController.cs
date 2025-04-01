@@ -24,9 +24,16 @@ namespace DressAuraBackend.ProductService
         // GET: api/products
         [HttpGet]
         [Authorize]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<ProductResponseDTO[]>>> GetProducts()
         {
-            return await _context.Products.Include(p => p.Category).ToListAsync();
+            var products = await _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Category)
+                .Include(p => p.ThumbnailImage)
+                .ToListAsync();
+
+            var productResponseDto = _mapper.Map<ProductResponseDTO[]>(products);
+            return Ok(productResponseDto);
         }
 
         // GET: api/products/{name}
@@ -38,10 +45,10 @@ namespace DressAuraBackend.ProductService
                 .Include(p => p.Category)
                 .Include(p => p.ThumbnailImage)
                 .Include(p => p.Images)
-                .Include(p => p.ProductColors)  // Ensure ProductColors is included
-                .ThenInclude(pc => pc.Color)   // Include the Color for each ProductColor
-                .Include(p => p.ProductSizes)  // Ensure ProductSizes is included
-                .ThenInclude(ps => ps.Size)    // Include the Size for each ProductSize
+                .Include(p => p.ProductColors)
+                .ThenInclude(pc => pc.Color)
+                .Include(p => p.ProductSizes)
+                .ThenInclude(ps => ps.Size)
                 .FirstOrDefaultAsync(p => p.Name == name);
 
             if (product == null)
