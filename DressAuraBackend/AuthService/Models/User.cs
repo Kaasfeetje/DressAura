@@ -34,11 +34,18 @@ namespace DressAuraBackend.AuthService.Models
 
         public bool IsRegistered { get; set; } = false;
 
+        public string Role { get; set; } = UserRoles.User;
     }
 
     public class Gender
     {
         public const string Male = "male";
         public const string Female = "female";
+    }
+
+    public class UserRoles
+    {
+        public const string Admin = "admin";
+        public const string User = "user";
     }
 }

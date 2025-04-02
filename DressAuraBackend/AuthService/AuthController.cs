@@ -72,6 +72,20 @@ namespace DressAuraBackend.AuthService
             return Ok(user);
         }
 
+        [Authorize(Policy = "AdminOnly")]
+        [HttpGet("is-admin")]
+        public async Task<IActionResult> isAdmin()
+        {
+            var email = User.FindFirst(ClaimTypes.Email)?.Value;
+            if (email == null)
+            {
+                return Unauthorized();
+            }
+
+            var user = await authService.GetUserByEmail(email);
+            return Ok(user);
+        }
+
         [Authorize]
         [HttpGet("account")]
         public async Task<IActionResult> GetAccount()

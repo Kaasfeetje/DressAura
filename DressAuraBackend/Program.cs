@@ -5,6 +5,9 @@ using System.Text.Json;
 using DressAuraBackend.AuthService;
 using DressAuraBackend.ProductService.Mappings;
 using DressAuraBackend.ProductService;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using DressAuraBackend.AuthService.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -52,9 +55,37 @@ builder.Services.AddAuthentication(options =>
     options.CallbackPath = "/signin-google";  // Google will redirect here after successful login
     options.Scope.Add("email"); // Optional: Add additional scopes like email or profile
     options.SaveTokens = true;  // Save the tokens for use later
+
+    // New
+    options.Events = new OAuthEvents
+    {
+        OnTicketReceived = async context =>
+        {
+            // Assuming you have a way to determine if the user is an admin
+            // This could come from your database or a custom logic
+            var email = context.Principal.FindFirst(ClaimTypes.Email)?.Value;
+            if (email != null)
+            {
+                // Example: Check your user database (pseudo-code)
+                // Replace with your actual user service/repository
+                var authService = context.HttpContext.RequestServices.GetRequiredService<IAuthService>();
+                var user = await authService.GetUserByEmail(email);
+
+                if (user != null)
+                {
+                    var identity = (ClaimsIdentity)context.Principal.Identity;
+                    identity.AddClaim(new Claim(ClaimTypes.Role, user.Role)); // Add role claim
+                }
+            }
+        }
+    };
 });
 
-builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireRole(UserRoles.Admin));
+});
 
 builder.Services.AddCors(options =>
 {
