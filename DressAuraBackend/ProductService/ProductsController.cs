@@ -27,7 +27,6 @@ namespace DressAuraBackend.ProductService
 
         // GET: api/products
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult<IEnumerable<ProductResponseDTO[]>>> GetProducts()
         {
             var products = await _context.Products

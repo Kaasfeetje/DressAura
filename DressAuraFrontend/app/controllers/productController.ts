@@ -42,7 +42,7 @@ export type ImageType = {
 export type ColorType = {
     id: number;
     name: string;
-    hexColor: string;
+    hexValue: string;
 };
 
 export type SizeType = {
@@ -63,12 +63,12 @@ export const product = {
         {
             id: 1,
             name: "Blue",
-            hexColor: "#0000FF",
+            hexValue: "#0000FF",
         },
         {
             id: 2,
             name: "Green",
-            hexColor: "#00FF00",
+            hexValue: "#00FF00",
         },
     ],
     description:
@@ -130,17 +130,23 @@ export const product = {
 export const useFetchProducts = () => {
     return useQuery({
         queryKey: [queryKeys.products.fetchAll],
-        queryFn: () => {
-            return makeApiRequest<ProductType[]>("/api/products");
-        },
+        queryFn: fetchProducts,
     });
 };
 
-export const useFetchProduct = (productName: string) => {
-    return useQuery({
-        queryKey: [queryKeys.products.fetchByName, productName],
-        queryFn: () => {
-            return makeApiRequest<ProductType>(`/api/products/${productName}`);
-        },
-    });
+export const fetchProducts = () => {
+    return makeApiRequest<ProductType[]>("/api/products");
+};
+
+// export const useFetchProduct = (productName: string) => {
+//     return useQuery({
+//         queryKey: [queryKeys.products.fetchByName, productName],
+//         queryFn: () => {
+//             return fetchProduct(productName);
+//         },
+//     });
+// };
+
+export const fetchProduct = (productName: string) => {
+    return makeApiRequest<ProductType>(`/api/products/${productName}`);
 };

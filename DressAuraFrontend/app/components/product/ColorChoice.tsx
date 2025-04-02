@@ -7,7 +7,9 @@ const getOptions = (colors: ColorType[]) =>
         label: (
             <div className="flex items-center gap-2">
                 <div
-                    style={{ backgroundColor: color.hexColor }}
+                    style={{
+                        backgroundColor: color.hexValue,
+                    }}
                     className="h-5 w-5 rounded-full"
                 ></div>
                 {color.name}
@@ -22,6 +24,7 @@ type Props = {
 const ColorChoice = ({ colors }: Props) => {
     return (
         <Select
+            instanceId="color-select"
             filterOption={(option, searchText) =>
                 option.data.name
                     .toLowerCase()

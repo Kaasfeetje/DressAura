@@ -18,6 +18,7 @@ type Props = {
 const SizeChoice = ({ sizes }: Props) => {
     return (
         <Select
+            instanceId="size-select"
             isSearchable={false}
             options={getOptions(sizes ?? [])}
             placeholder="Select a size..."

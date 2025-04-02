@@ -62,6 +62,9 @@ This is a full-featured e-commerce platform under active development. It will al
 - [ ] Promotions automatically applied at checkout
 
 ### 9. **Search Engine Optimization (SEO)**
+- [x] Use SSR for products and product pages
+- [ ] Use SSR for categories
+- [ ] Use SSR for Brands
 - [ ] SEO-friendly URLs for products and categories
 - [ ] Customizable meta titles, descriptions, and keywords for each page
 - [ ] Rich snippets for enhanced search results

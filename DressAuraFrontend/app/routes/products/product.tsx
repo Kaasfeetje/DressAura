@@ -1,9 +1,11 @@
-import ProtectedRoute from "~/components/auth/ProtectedRoute";
 import Navbar from "~/components/common/Navbar/Navbar";
 import type { Route } from "./+types/product";
 import MobileProductPage from "~/components/product/MobileProductPage";
 import ProductPage from "~/components/product/ProductPage";
-import { useFetchProduct } from "~/controllers/productController";
+import {
+    fetchProduct,
+    type ProductType,
+} from "~/controllers/productController";
 
 export function meta({ params }: Route.MetaArgs) {
     return [
@@ -12,21 +14,34 @@ export function meta({ params }: Route.MetaArgs) {
     ];
 }
 
-export default function Product({ params }: Route.MetaArgs) {
+export async function loader({ params }: Route.LoaderArgs) {
+    try {
+        const product = await fetchProduct(params.productName);
+        return { product };
+    } catch (error) {
+        console.error("Failed to fetch products:", error);
+        return { product: undefined };
+    }
+}
+
+export default function Product({ loaderData }: Route.ComponentProps) {
+    if (loaderData.product == undefined) {
+        return <div>Something went wrong</div>;
+    }
     return (
-        <ProtectedRoute>
+        <>
             <Navbar />
-            <ProductContainer productName={params.productName} />
-        </ProtectedRoute>
+            <ProductContainer product={loaderData.product} />
+        </>
     );
 }
 
 type Props = {
-    productName: string;
+    product: ProductType;
 };
 
-const ProductContainer = ({ productName }: Props) => {
-    const { data: product } = useFetchProduct(productName);
+const ProductContainer = ({ product }: Props) => {
+    // const { data: product } = useFetchProduct(productName);
     if (product) {
         return (
             <div>
