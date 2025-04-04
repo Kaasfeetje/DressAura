@@ -52,6 +52,7 @@ This is a full-featured e-commerce platform under active development. It will al
 
 ### 7. **Admin Dashboard**
 - [ ] Product Management (Add, update, and remove products)
+- [x] Product Management Add
 - [ ] Order Management (View and update order statuses)
 - [ ] User Management (Manage user accounts and order history)
 - [ ] Sales Analytics and Reports

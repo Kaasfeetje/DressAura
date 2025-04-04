@@ -8,22 +8,37 @@ type Props = {
     onChange: (e: ChangeEvent<HTMLInputElement>) => void;
     value: string;
     error?: string;
-    type?: "text" | "number";
 };
 
-const TextInput = ({
+const PriceInput = ({
     label,
     placeholder,
     value,
     onChange,
     required = false,
     error,
-    type = "text",
 }: Props) => {
     const [touched, setTouched] = useState(false);
 
     const isInvalid = required && touched && value.trim() === "";
     const hasError = error || isInvalid;
+
+    const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
+        let newValue = e.target.value;
+
+        if (/[^0-9.]/.test(newValue)) {
+            newValue = newValue.replace(/[^0-9.]/g, "");
+        }
+
+        if (newValue.split(".").length > 1) {
+            newValue = newValue.slice(0, newValue.lastIndexOf(".") + 3);
+        }
+
+        onChange({
+            ...e,
+            target: { ...e.target, value: newValue },
+        });
+    };
 
     return (
         <div className="flex w-full max-w-sm flex-col">
@@ -32,10 +47,10 @@ const TextInput = ({
             </label>
             <div className="relative mt-1">
                 <input
-                    type={type}
+                    type="text"
                     placeholder={placeholder || ""}
                     value={value}
-                    onChange={onChange}
+                    onChange={handlePriceChange}
                     onBlur={() => setTouched(true)}
                     className={`w-full border px-3 py-2 ${
                         hasError ? "border-red-500" : "border-gray-300"
@@ -57,4 +72,4 @@ const TextInput = ({
     );
 };
 
-export default TextInput;
+export default PriceInput;

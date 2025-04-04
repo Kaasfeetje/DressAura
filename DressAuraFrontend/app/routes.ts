@@ -17,5 +17,15 @@ export default [
         ]),
     ]),
     route("/p/:productName", "routes/products/product.tsx"),
-    ...prefix("dashboard", [route("/", "routes/dashboard/dashboard.tsx")]),
+    ...prefix("dashboard", [
+        layout("routes/dashboard/dashboardLayout.tsx", [
+            index("routes/dashboard/dashboard.tsx"),
+            ...prefix("products", [
+                route(
+                    "/create",
+                    "routes/dashboard/products/dashboardCreateProduct.tsx",
+                ),
+            ]),
+        ]),
+    ]),
 ] satisfies RouteConfig;

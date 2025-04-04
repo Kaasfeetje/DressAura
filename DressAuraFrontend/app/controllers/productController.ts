@@ -1,6 +1,5 @@
-import { useQuery } from "@tanstack/react-query";
-import { queryKeys } from "./reactQueryKeys";
 import { makeApiRequest } from "./api";
+import type { UserType } from "./authController";
 
 export type ProductType = {
     id: number;
@@ -48,6 +47,25 @@ export type ColorType = {
 export type SizeType = {
     id: number;
     name: string;
+};
+
+// DTO
+export type ColorRequestType = {
+    name: string;
+    hexValue: string;
+};
+
+export type ProductRequestType = {
+    name: string;
+    description?: string;
+    price: number;
+    stockQuantity?: number;
+    brand?: string;
+    category?: string;
+    thumbnailImage: string;
+    images?: string[];
+    colors?: ColorRequestType[];
+    sizes?: string[];
 };
 
 export const product = {
@@ -127,12 +145,12 @@ export const product = {
     stockQuantity: 100,
 } satisfies ProductType;
 
-export const useFetchProducts = () => {
-    return useQuery({
-        queryKey: [queryKeys.products.fetchAll],
-        queryFn: fetchProducts,
-    });
-};
+// export const useFetchProducts = () => {
+//     return useQuery({
+//         queryKey: [queryKeys.products.fetchAll],
+//         queryFn: fetchProducts,
+//     });
+// };
 
 export const fetchProducts = () => {
     return makeApiRequest<ProductType[]>("/api/products");
@@ -149,4 +167,11 @@ export const fetchProducts = () => {
 
 export const fetchProduct = (productName: string) => {
     return makeApiRequest<ProductType>(`/api/products/${productName}`);
+};
+
+export const createProduct = async (data: ProductRequestType) => {
+    return await makeApiRequest<UserType>("/api/products", {
+        method: "POST",
+        body: JSON.stringify(data),
+    });
 };
