@@ -145,25 +145,9 @@ export const product = {
     stockQuantity: 100,
 } satisfies ProductType;
 
-// export const useFetchProducts = () => {
-//     return useQuery({
-//         queryKey: [queryKeys.products.fetchAll],
-//         queryFn: fetchProducts,
-//     });
-// };
-
 export const fetchProducts = () => {
     return makeApiRequest<ProductType[]>("/api/products");
 };
-
-// export const useFetchProduct = (productName: string) => {
-//     return useQuery({
-//         queryKey: [queryKeys.products.fetchByName, productName],
-//         queryFn: () => {
-//             return fetchProduct(productName);
-//         },
-//     });
-// };
 
 export const fetchProduct = (productName: string) => {
     return makeApiRequest<ProductType>(`/api/products/${productName}`);
@@ -174,4 +158,10 @@ export const createProduct = async (data: ProductRequestType) => {
         method: "POST",
         body: JSON.stringify(data),
     });
+};
+
+export const fetchCategory = (categoryName: string) => {
+    return makeApiRequest<ProductType[]>(
+        `/api/categories/${categoryName}/products`,
+    );
 };

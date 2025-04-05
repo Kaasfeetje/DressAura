@@ -5,6 +5,7 @@ using DressAuraBackend.BrandService.DTOs;
 using DressAuraBackend.ImageService.DTOs;
 using DressAuraBackend.BrandService.Models;
 using DressAuraBackend.ImageService.Models;
+using DressAuraBackend.CategoryService.Models;
 
 namespace DressAuraBackend.ProductService.Mappings
 {

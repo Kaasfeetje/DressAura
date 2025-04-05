@@ -3,6 +3,7 @@ using DressAuraBackend.ProductService.Models;
 using DressAuraBackend.AuthService.Models;
 using DressAuraBackend.ImageService.Models;
 using DressAuraBackend.BrandService.Models;
+using DressAuraBackend.CategoryService.Models;
 
 namespace DressAuraBackend.Data
 {

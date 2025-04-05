@@ -41,19 +41,19 @@ const NavbarMenu = ({ isOpen, onClose }: Props) => {
                     >
                         LAST CHANCE
                     </Link>
-                    <Link to="/clothing" className="mt-10 mb-6 block md:mb-2">
+                    <Link to="/c/clothing" className="mt-10 mb-6 block md:mb-2">
                         CLOTHING
                     </Link>
-                    <Link to="/accessories" className="mb-6 block md:mb-2">
+                    <Link to="/c/accessories" className="mb-6 block md:mb-2">
                         ACCESSORIES
                     </Link>
-                    <Link to="/shoes" className="mb-6 block md:mb-2">
+                    <Link to="/c/shoes" className="mb-6 block md:mb-2">
                         SHOES
                     </Link>
-                    <Link to="/beauty" className="mb-6 block md:mb-2">
+                    <Link to="/c/beauty" className="mb-6 block md:mb-2">
                         BEAUTY
                     </Link>
-                    <Link to="/sport" className="mb-6 block md:mb-2">
+                    <Link to="/c/sport" className="mb-6 block md:mb-2">
                         SPORT
                     </Link>
                 </div>

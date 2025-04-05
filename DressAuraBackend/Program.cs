@@ -8,6 +8,7 @@ using DressAuraBackend.ProductService;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using DressAuraBackend.AuthService.Models;
+using DressAuraBackend.CategoryService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -100,6 +101,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ICategoriesService, CategoriesService>();
 
 builder.Services.AddAutoMapper(typeof(ProductProfile));
 

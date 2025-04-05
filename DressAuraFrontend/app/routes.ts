@@ -17,6 +17,7 @@ export default [
         ]),
     ]),
     route("/p/:productName", "routes/products/product.tsx"),
+    route("/c/:categoryName", "routes/category/category.tsx"),
     ...prefix("dashboard", [
         layout("routes/dashboard/dashboardLayout.tsx", [
             index("routes/dashboard/dashboard.tsx"),

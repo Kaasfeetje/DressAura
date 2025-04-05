@@ -1,4 +1,5 @@
 using DressAuraBackend.BrandService.Models;
+using DressAuraBackend.CategoryService.Models;
 using DressAuraBackend.Data;
 using DressAuraBackend.ImageService.Models;
 using DressAuraBackend.ProductService.DTOs;

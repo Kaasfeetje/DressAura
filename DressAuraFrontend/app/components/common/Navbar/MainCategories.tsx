@@ -9,10 +9,10 @@ const MainCategories = ({ isMobile }: Props) => {
         <div
             className={`${isMobile ? "flex max-w-full md:hidden" : "ml-4 hidden md:flex"} text-lg text-gray-600`}
         >
-            <CategoryItem href="/women" title="WOMEN" />
-            <CategoryItem href="/men" title="MEN" />
-            <CategoryItem href="/children" title="CHILDREN" />
-            <CategoryItem href="/beauty" title="BEAUTY" />
+            <CategoryItem href="/c/women" title="WOMEN" />
+            <CategoryItem href="/c/men" title="MEN" />
+            <CategoryItem href="/c/children" title="CHILDREN" />
+            <CategoryItem href="/c/beauty" title="BEAUTY" />
         </div>
     );
 };
